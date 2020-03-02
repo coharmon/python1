@@ -1,0 +1,46 @@
+def filter_letters(string):
+    strsize1 = len(string)
+
+    # Find spaces between words
+    x = 0
+    nonalpha = []
+    for i in string:
+        if(i.isalpha()) == False:
+            nonalpha.append(x)
+        x = x + 1
+
+    # Form all words 
+    y = 0
+    wordsep = []
+    for a in nonalpha: 
+        wordsep.append(string[y:a])
+        y = a + 1
+    
+    wordsep.append(string[y:len(string)])
+    return wordsep
+
+def store_badwords():
+    # Filter Uninteresting words
+    badwords = ["a", "if", "to", "at", "the", "this", "her", "him", "that", "he", "she", "of", "be", "do", "it", "in", "is", "you", "me", "I", "and"]
+    return badwords
+
+def getgoodwords(wordsep, badwords):
+    for checkbad in badwords:
+        for goodword in wordsep:
+            if (checkbad == goodword):
+                wordsep.remove(checkbad)
+    return wordsep
+    
+def getfrequency(wordsep):
+    wordfreq = []
+    for w in wordsep:
+         wordfreq.append(wordsep.count(w))
+    return wordsep, wordfreq
+    
+goodstuff = []
+goodstuff = filter_letters("Hello please fksnfg if and World you pj the roost njnl is st wfnlv")
+badstuff = store_badwords()
+print(goodstuff)
+print(badstuff)
+print(getgoodwords(goodstuff, badstuff))
+print(getfrequency(getgoodwords(goodstuff, badstuff)))
